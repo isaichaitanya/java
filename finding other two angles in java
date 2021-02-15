@@ -1,0 +1,74 @@
+package com.chaitanya;
+
+class Main {
+
+
+    static double PI = 3.1415926535;
+
+    static double findAnglesA(double a, double b, double c)
+    {
+        double A = Math.acos((b * b + c * c - a * a) / (2 * b * c));
+
+        return A * 180 / PI;
+    }
+
+    static double findAnglesB(double a, double b, double c)
+    {
+        double B = Math.acos((a * a + c * c - b * b) / (2 * a * c));
+
+        return B * 180 / PI;
+    }
+
+    static void printAngles(int a, int b, int c)
+    {
+        double x = (double)a;
+        double y = (double)b;
+        double z = (double)c;
+
+        double A = findAnglesA(x, y, z);
+
+        double B = findAnglesB(x, y, z);
+
+        System.out.println( "Angles are A = " + A + ", B = " +
+                B + ", C = " + 90);
+    }
+
+    static void printOtherSides(int n)
+    {
+        int b=0,c=0;
+
+        if ((n & 1)>0)
+        {
+            if (n == 1)
+                System.out.println( -1);
+            else
+            {
+                b = 0;
+                c = 0;
+                System.out.println( "Side b = " + b
+                        + ", Side c = " + c );
+            }
+        }
+        else
+        {
+            if (n == 2)
+                System.out.println( -1);
+            else
+            {
+                b = n*n/4-1;
+                c = n*n/4+1;
+                System.out.println( "Side b = " + b
+                        + ", Side c = " + c);
+            }
+        }
+
+        printAngles(n,b,c);
+    }
+
+
+    public static void main (String[] args) {
+        int a = 20;
+
+        printOtherSides(a);
+    }
+}
